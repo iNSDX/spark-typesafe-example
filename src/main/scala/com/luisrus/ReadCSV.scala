@@ -1,6 +1,7 @@
 package com.luisrus
 
 import com.luisrus.providers.SparkSessionProvider._
+import com.luisrus.transcoding.Transcode._
 import org.apache.spark.sql.types.{StructField, StructType, StringType, IntegerType}
 
 /**
@@ -22,7 +23,7 @@ object ReadCSV {
 
     val csvFile = args(0)
 
-    val df = spark
+    val sapDF = spark
       .read
       .options(Map(
         "header"->"true",
@@ -30,7 +31,9 @@ object ReadCSV {
       .schema(customSchema) // All string if inferSchema=true by default
       .csv(csvFile)
 
-    df.show(20, truncate = false)
+    val finalDF = transSap2Datalake(sapDF)
+
+    finalDF.show(20, truncate = false)
 
   }
 
