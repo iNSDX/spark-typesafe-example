@@ -6,5 +6,9 @@ mvn clean install
 ```
 
 ```shell
-spark-submit --class com.luisrus.App --jars D:\.m2\repos\com\typesafe\config\1.4.0\config-1.4.0.jar C:\Users\Luis\IdeaProjects\SparkTest\SparkTest\target\SparkTestApp-1.0-SNAPSHOT.jar
+spark-submit --class com.luisrus.SparkContextReadTxtFile --jars D:\.m2\repos\com\typesafe\config\1.4.0\config-1.4.0.jar C:\Users\Luis\IdeaProjects\SparkTest\SparkTest\target\SparkTestApp-1.0-SNAPSHOT.jar
+```
+
+```shell
+spark-submit --class com.luisrus.ReadCSV --jars D:\.m2\repos\com\typesafe\config\1.4.0\config-1.4.0.jar C:\Users\Luis\IdeaProjects\SparkTest\SparkTest\target\SparkTestApp-1.0-SNAPSHOT.jar > test.txt
 ```
