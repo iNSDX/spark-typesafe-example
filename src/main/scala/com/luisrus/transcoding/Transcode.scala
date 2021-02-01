@@ -7,7 +7,7 @@ import org.apache.spark.sql.types.{IntegerType, StringType, StructField, StructT
 object Transcode {
   import spark.implicits._
 
-  def transSap2Datalake(sapDF: DataFrame): DataFrame = {
+  def transSap2Datalake(sapDF: DataFrame, joinKey: String): DataFrame = {
 //    val transSchema = StructType(Array(
 //      StructField("sapId", IntegerType, false),
 //      StructField("datalakeId", IntegerType, false),
@@ -24,7 +24,7 @@ object Transcode {
       .csv("C:\\Users\\Luis\\IdeaProjects\\SparkTest\\SparkTest\\src\\main\\resources\\transcoding.csv")
 
     val newSapDF: DataFrame = sapDF.select($"driverId", $"code", $"dob")
-    newSapDF.join(transTableDF, newSapDF("driverId")===transTableDF("sapId"), "left")
+    newSapDF.join(transTableDF, newSapDF("driverId")===transTableDF(joinKey), "left")
 
   }
 }
